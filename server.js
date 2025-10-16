@@ -34,6 +34,7 @@ const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim())
 const notEmpty = (s) => typeof s === "string" && s.trim().length > 0;
 
 app.post("/api/book", limiter, async (req, res) => {
+  console.error("EMAIL ERROR:", err);
   const { name, email, company = "", date, time, notes = "" } = req.body || {};
 
   const errors = {};
@@ -98,5 +99,6 @@ app.use((req, res) => res.status(404).json({ ok: false, error: "Not found" }));
 
 // ---- start
 app.listen(PORT, () => console.log(`API ready on http://localhost:${PORT}`));
+
 
 
